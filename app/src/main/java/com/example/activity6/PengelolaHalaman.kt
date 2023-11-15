@@ -15,12 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.activity6.data.SumberData
 
 enum class PengelolaHalaman {
     Formulir,
@@ -71,15 +73,32 @@ fun ContactApp(
         val uiState by viewModel.stateUI.collectAsState()
         NavHost(
             navController = navController,
-            startDestination = PengelolaHalaman.Formulir.name,
+            startDestination = PengelolaHalaman.Home.name,
             modifier = Modifier.padding(innerPadding)
         )
         {
+            composable(route= PengelolaHalaman.Home.name){
+                HalamanHomeEsteh(
+                    onNextButtonClicked = {navController.navigate(PengelolaHalaman.Formulir.name)}
+                )
+            }
             composable(route= PengelolaHalaman.Formulir.name){
                 HalamanSatu(onSubmitButtonClick = {
                     viewModel.setContact(it)
-                    navController.navigate(PengelolaHalaman.Detail.name)
+                    navController.navigate(PengelolaHalaman.Rasa.name)
                 })
+            }
+            composable(route = PengelolaHalaman.Rasa.name) {
+                val context = LocalContext.current
+                HalamanSatuEsteh(
+                    pilihanRasa = SumberData.flavors.map { id ->
+                        context.resources.getString(id)
+                    },
+                    onSelectionChanged = { viewModel.setRasa(it) },
+                    onConfirmButtonClicked = { viewModel.setJumlah(it) },
+                    onNextButtonClicked = { navController.navigate(PengelolaHalaman.Summary.name) },
+                    onCancelButtonClicked = { cancelOrderAndNavigateToForm(viewModel, navController) }
+                )
             }
             composable(route = PengelolaHalaman.Detail.name){
                 HalamanDua(
@@ -90,4 +109,11 @@ fun ContactApp(
             }
         }
     }
+}
+private fun cancelOrderAndNavigateToForm(
+    viewModel: ContactViewModel,
+    navController: NavHostController
+) {
+    viewModel.resetOrder()
+    navController.popBackStack(PengelolaHalaman.Formulir.name, inclusive = false)
 }
