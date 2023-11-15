@@ -86,8 +86,8 @@ fun ContactApp(
             composable(route= PengelolaHalaman.Formulir.name){
                 HalamanSatu(onSubmitButtonClick = {
                     viewModel.setContact(it)
-                    navController.navigate(PengelolaHalaman.Rasa.name)
-                })
+                    navController.navigate(PengelolaHalaman.Rasa.name)},
+                    onCancelButtonClick = { cancelOrderAndNavigateToHome(navController) })
             }
             composable(route = PengelolaHalaman.Rasa.name) {
                 val context = LocalContext.current
@@ -121,4 +121,10 @@ private fun cancelOrderAndNavigateToRasa(
     navController: NavHostController
 ) {
     navController.popBackStack(PengelolaHalaman.Rasa.name, inclusive = false)
+}
+
+private fun cancelOrderAndNavigateToHome(
+    navController: NavHostController
+) {
+    navController.popBackStack(PengelolaHalaman.Home.name, inclusive = false)
 }
