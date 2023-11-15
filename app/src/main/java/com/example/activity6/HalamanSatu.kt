@@ -2,6 +2,7 @@ package com.example.activity6
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -22,7 +23,8 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HalamanSatu(
-    onSubmitButtonClick: (MutableList<String>) -> Unit
+    onSubmitButtonClick: (MutableList<String>) -> Unit,
+    onCancelButtonClick: (MutableList<String>) -> Unit
 ){
     var namaTxt by rememberSaveable {
         mutableStateOf("")
@@ -58,10 +60,21 @@ fun HalamanSatu(
         }, label = {
             Text(text= "Telepon")
         })
+
         Spacer(modifier = Modifier.padding(16.dp))
 
-        Button(onClick =  {onSubmitButtonClick(listDataTxt)} ) {
-            Text(text = stringResource(R.string.btnSubmit))
+        Row {
+            Button(onClick = { onCancelButtonClick(listDataTxt) }) {
+                Text(text = stringResource(id = R.string.cancel))
+            }
+
+            Spacer(modifier = Modifier.padding(50.dp))
+
+
+            Button(onClick =  {onSubmitButtonClick(listDataTxt)} ) {
+                Text(text = stringResource(R.string.btnSubmit))
+            }
         }
+
     }
 }
