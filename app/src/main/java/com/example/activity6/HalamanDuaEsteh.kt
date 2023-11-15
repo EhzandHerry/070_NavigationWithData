@@ -28,6 +28,9 @@ fun HalamanDuaEsteh (
     modifier: Modifier = Modifier
 ) {
     val items = listOf(
+        Pair(stringResource(R.string.nama), contactUIState.nama),
+        Pair(stringResource(R.string.notelp), contactUIState.notelp),
+        Pair(stringResource(R.string.alamat), contactUIState.alamat),
         Pair(stringResource(R.string.quantity), contactUIState.jumlah),
         Pair(stringResource(R.string.flavor), contactUIState.rasa)
     )
