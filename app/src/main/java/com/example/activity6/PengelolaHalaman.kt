@@ -60,7 +60,14 @@ fun ContactApp(
     viewModel: ContactViewModel = viewModel(),
     navController: NavHostController = rememberNavController()
 ){
-    Scaffold { innerPadding ->
+    Scaffold (
+        topBar = {
+            EsJumboAppBar(
+                bisaNavigasiBack = false,
+                navigasiUp = { /*TODO: implement back navigation*/ }
+            )
+        }
+    )  { innerPadding ->
         val uiState by viewModel.stateUI.collectAsState()
         NavHost(
             navController = navController,
