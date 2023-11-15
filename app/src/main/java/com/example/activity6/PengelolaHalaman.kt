@@ -24,7 +24,10 @@ import androidx.navigation.compose.rememberNavController
 
 enum class PengelolaHalaman {
     Formulir,
-    Detail
+    Detail,
+    Home,
+    Rasa,
+    Summary
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
