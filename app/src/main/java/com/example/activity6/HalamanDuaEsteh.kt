@@ -17,19 +17,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import com.example.activity6.data.OrderUIState
+import com.example.activity6.data.ContactUIState
 import com.example.activity6.komponen.FormatLabelHarga
 
 @Composable
 fun HalamanDuaEsteh (
-    orderUiState: OrderUIState,
+    contactUIState: ContactUIState,
     onCancelButtonCLicked: () -> Unit,
     //onSendButtonClicked: (String, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val items = listOf(
-        Pair(stringResource(R.string.quantity), orderUiState.jumlah),
-        Pair(stringResource(R.string.flavor), orderUiState.rasa)
+        Pair(stringResource(R.string.quantity), contactUIState.jumlah),
+        Pair(stringResource(R.string.flavor), contactUIState.rasa)
     )
     Column(
         modifier = modifier,
@@ -52,7 +52,7 @@ fun HalamanDuaEsteh (
             }
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
             FormatLabelHarga(
-                subtotal = orderUiState.harga,
+                subtotal = contactUIState.harga,
                 modifier = Modifier.align(Alignment.End)
             )
         }

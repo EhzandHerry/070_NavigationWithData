@@ -22,6 +22,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.activity6.data.ContactUIState
 import com.example.activity6.data.SumberData
 
 enum class PengelolaHalaman {
@@ -100,12 +101,11 @@ fun ContactApp(
                     onCancelButtonClicked = { cancelOrderAndNavigateToForm(viewModel, navController) }
                 )
             }
-            composable(route = PengelolaHalaman.Detail.name){
-                HalamanDua(
-                    contactUIState = uiState
-                ) {
-                    navController.popBackStack(PengelolaHalaman.Formulir.name, false)
-                }
+            composable(route = PengelolaHalaman.Summary.name){
+                HalamanDuaEsteh(
+                    contactUIState = uiState,
+                    onCancelButtonCLicked = { cancelOrderAndNavigateToRasa(navController) },
+                )
             }
         }
     }
@@ -116,4 +116,9 @@ private fun cancelOrderAndNavigateToForm(
 ) {
     viewModel.resetOrder()
     navController.popBackStack(PengelolaHalaman.Formulir.name, inclusive = false)
+}
+private fun cancelOrderAndNavigateToRasa(
+    navController: NavHostController
+) {
+    navController.popBackStack(PengelolaHalaman.Rasa.name, inclusive = false)
 }

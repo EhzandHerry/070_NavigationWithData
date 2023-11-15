@@ -2,7 +2,6 @@ package com.example.activity6
 
 import androidx.lifecycle.ViewModel
 import com.example.activity6.data.ContactUIState
-import com.example.activity6.data.OrderUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
