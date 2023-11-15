@@ -3,12 +3,12 @@
     <string name="nama">Nama</string>
     <string name="alamat">Alamat</string>
     <string name="notelp">No Telepon</string>
-    <string name="btnSubmit">Submit</string>
+    <string name="btnSubmit">Next</string>
     <string name="btnBack">Back</string>
 
     <string name="back_button">Kembali</string>
     <string name="confirm">Konfirmasi</string>
-    <string name="next">Lanjut</string>
+    <string name="next">Submit</string>
     <string name="cancel">Kembali</string>
     <string name="vanilla">Vanilla</string>
     <string name="lemon">Lemon</string>
